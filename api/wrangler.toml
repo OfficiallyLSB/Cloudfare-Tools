@@ -1,0 +1,27 @@
+# Cloudflare Workers configuration
+# https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "$APP_NAME-api"
+main = "index.js"
+
+# https://developers.cloudflare.com/workers/platform/compatibility-dates/
+compatibility_date = "2022-04-18"
+
+account_id = "$CLOUDFLARE_ACCOUNT_ID"
+
+routes = [
+  "$APP_HOSTNAME/api/*",
+  "$APP_HOSTNAME/auth/*",
+]
+
+[vars]
+APP_ENV = "$APP_ENV"
+APP_NAME = "$APP_NAME"
+APP_HOSTNAME = "$APP_HOSTNAME"
+
+# [secrets]
+# GOOGLE_CLOUD_CREDENTIALS
+
+[[rules]]
+type = "ESModule"
+globs = ["**/*.js"]
